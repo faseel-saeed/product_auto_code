@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_category_groups_tree" model="ir.ui.view">
+            <field name="name">product.category.groups.tree</field>
+            <field name="model">product.category.groups</field>
+            <field name="arch" type="xml">
+                <tree string="Product Category Group" limit="200">
+                    <field name="name"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="product_category_groups_form" model="ir.ui.view">
+            <field name="name">product.category.groups.form</field>
+            <field name="model">product.category.groups</field>
+            <field name="arch" type="xml">
+                <form string="Product Category Group">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1><field name="name" placeholder="e.g. My Category Group"/></h1>
+                        </div>
+                        <group >
+                            <group>
+                                <field name="product_categories" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="product_category_groups_search" model="ir.ui.view">
+            <field name="name">product.category.groups.search</field>
+            <field name="model">product.category.groups</field>
+            <field name="arch" type="xml">
+                <search string="Product Category Group">
+                    <field name="name"
+                        filter_domain="[('name', 'ilike', self)]"
+                        string="Product Category Group"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="product_category_groups_act_window" model="ir.actions.act_window">
+            <field name="name">Product Category Group</field>
+            <field name="res_model">product.category.groups</field>
+            <field name="search_view_id" ref="product_category_groups_search"/>
+        </record>
+
+        <menuitem action="product_category_groups_act_window"
+                  id="menu_product_category_groups_act_window"
+
+
+        parent="base.menu_users" groups="base.group_no_one" sequence="4"/>
+        <!--groups="product.group_product_variant"-->
+
+
+    </data>
+</odoo>
